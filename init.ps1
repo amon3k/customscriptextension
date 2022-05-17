@@ -3,7 +3,7 @@ Write-Output "Create action-runner dir"
 New-Item -Path "c:\" -Name "action-runner" -ItemType "directory" -ErrorAction SilentlyContinue
 cd c:\action-runner
 Write-Output "Get release version"
-$release = (iwr https://api.github.com/repos/actions/runner/releases/latest | ConvertFrom-Json ).name.substring(1)
+$release = (curl https://api.github.com/repos/actions/runner/releases/latest | ConvertFrom-Json ).name.substring(1)
 
 Write-Output "Downloads runner package"
 #iwr -Uri "https://github.com/actions/runner/releases/download/v$release/actions-runner-win-x64-$release.zip" -OutFile "C:\action-runner\actions-runner-win-x64-$release.zip"
